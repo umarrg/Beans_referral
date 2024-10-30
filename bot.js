@@ -34,7 +34,7 @@ const isAdmin = (telegramId) => adminIds.includes(telegramId.toString());
 const generateReferralLink = (telegramId) => `https://t.me/BeansDegenTask_bot?start=${telegramId}`;
 
 bot.onText(/\/start(.*)/, async (msg, match) => {
-    const telegramId = msg.from.id.toString();
+    const telegramId = msg.chat.id;
     const username = msg.from.username;
     const referredBy = match[1] ? match[1].trim() : null;
 
@@ -65,7 +65,7 @@ bot.onText(/\/start(.*)/, async (msg, match) => {
 });
 
 bot.onText(/\/referral/, async (msg) => {
-    const telegramId = msg.from.id.toString();
+    const telegramId = msg.chat.id;
     const user = await Model.findOne({ telegramId });
 
     if (user) {
@@ -76,7 +76,7 @@ bot.onText(/\/referral/, async (msg) => {
     }
 });
 bot.onText(/\/points/, async (msg) => {
-    const telegramId = msg.from.id.toString();
+    const telegramId = msg.chat.id;
     const user = await Model.findOne({ telegramId });
 
     if (user) {
@@ -88,7 +88,7 @@ bot.onText(/\/points/, async (msg) => {
 });
 
 bot.onText(/\/referrals/, async (msg) => {
-    const telegramId = msg.from.id.toString();
+    const telegramId = msg.chat.id;
     const user = await Model.findOne({ telegramId });
 
     if (user) {
@@ -108,7 +108,7 @@ bot.onText(/\/leaderboard/, async (msg) => {
 });
 
 bot.onText(/\/reset_leaderboard/, async (msg) => {
-    const telegramId = msg.from.id.toString();
+    const telegramId = msg.chat.id;
     if (!isAdmin(telegramId)) {
         return bot.sendMessage(telegramId, '❗️ You are not authorized to reset the leaderboard.');
     }
@@ -122,7 +122,7 @@ bot.onText(/\/reset_leaderboard/, async (msg) => {
 });
 
 bot.onText(/\/createtask (.+)/, async (msg, match) => {
-    const telegramId = msg.from.id.toString();
+    const telegramId = msg.chat.id;
     if (!isAdmin(telegramId)) {
         return bot.sendMessage(telegramId, '❗️ You are not authorized to create tasks.');
     }
@@ -163,7 +163,7 @@ bot.onText(/\/tasks/, async (msg) => {
     }
 });
 bot.onText(/\/completetask (.+)/, async (msg, match) => {
-    const telegramId = msg.from.id.toString();
+    const telegramId = msg.chat.id;
     const taskName = match[1].trim();
     const user = await Model.findOne({ telegramId });
 
