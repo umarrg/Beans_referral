@@ -8,7 +8,7 @@ const AdminTask = require('./model/adminTask');
 
 const adminIds = ["1140923270"];
 
-const bot = new TelegramBot(process.env.TOKEN, { polling: true });
+const bot = new TelegramBot(process.env.TOKEN, { polling: false });
 
 const app = express();
 const port = process.env.PORT || 9000;
