@@ -123,9 +123,9 @@ bot.onText(/\/reset_leaderboard/, async (msg) => {
 
 bot.onText(/\/createtask (.+)/, async (msg, match) => {
     const telegramId = msg.chat.id;
-    if (!isAdmin(telegramId)) {
-        return bot.sendMessage(telegramId, '❗️ You are not authorized to create tasks.');
-    }
+    // if (!isAdmin(telegramId)) {
+    //     return bot.sendMessage(telegramId, '❗️ You are not authorized to create tasks.');
+    // }
 
     const taskInput = match[1].trim().split('|');
     if (taskInput.length !== 2) {
